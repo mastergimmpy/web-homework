@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
 import { useQuery } from '@apollo/client'
 import GetTransactions from '../gql/transactions.gql'
-import { TxTable } from '../components/transactions/TxTable'
 import { useKonamiCode } from '../components/secretCodes/useKonamiCode'
+import FormHandler from '../components/forms/formHandler'
 
 export function Home () {
-  const { loading, error, data = {} } = useQuery(GetTransactions)
+  const { loading, error } = useQuery(GetTransactions)
   const konami = useKonamiCode()
 
   if (loading) {
@@ -26,7 +26,7 @@ export function Home () {
 
   return (
     <Fragment>
-      <TxTable data={data.transactions} />
+      <FormHandler />
       <div>
         { konami ? <div className='gifDisplay'><img alt='conta gif' src='https://media.giphy.com/media/DpXqHdILXRRDi/giphy.gif' /></div> : <div /> }
       </div>
